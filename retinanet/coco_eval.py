@@ -74,7 +74,7 @@ def evaluate_coco(dataset_name, dataset, detector, emb_type = 'w2v', threshold=0
                     # append detection for each positively labeled class
                     image_result = {
                         'image_id'    : dataset.image_ids[index],
-                        'category_id': dataset.coco_labels[int(label)],
+                        'category_id' : dataset.coco_labels[int(label)],
                         'score'       : float(score),
                         'bbox'        : box.tolist(),
                     }

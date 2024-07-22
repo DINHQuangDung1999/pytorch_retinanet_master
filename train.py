@@ -34,7 +34,7 @@ def main(args=None):
 
     parser = parser.parse_args(args)
     
-    #### args DOTA ###
+    # #### args DOTA ###
     # parser = EasyDict({'dataset': 'dota',
     #                    'coco_path': '../data/DOTA',
     #                    'depth': 50,
@@ -48,8 +48,8 @@ def main(args=None):
                        'coco_path': '../data/MSCOCO',
                        'depth': 50,
                        'epochs': 30,
-                       'checkpoint_path': None,
-                        # 'checkpoint_path':'/home/qdinh/pytorch_retinanet_master/checkpoints/coco/traditional/traditional_resnet50_9.pt',
+                    #    'checkpoint_path': None,
+                        'checkpoint_path':'/home/qdinh/pytorch_retinanet_master/checkpoints/coco/traditional/traditional_resnet50_11.pt',
                        'batch_size': 4,
                        'log_wandb':'off',
                        'learning_rate': 1e-5,
@@ -174,12 +174,10 @@ def main(args=None):
 
                 if torch.cuda.is_available():
                     classification, regression, anchors = retinanet(data['img'].cuda().float())
+                    annotations = data['annot'].cuda()
                 else:
                     classification, regression, anchors = retinanet(data['img'].float())
-
-                annotations = data['annot']
-                if torch.cuda.is_available():
-                    annotations = annotations.cuda()
+                    annotations = data['annot']
 
                 classification_loss, regression_loss = loss_fn(classification, regression, anchors, annotations)
                 classification_loss = classification_loss.mean()

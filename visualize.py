@@ -26,35 +26,35 @@ def main(args=None):
 	parser.add_argument('--th', help='Threshold to plot.', default=0.5)
 	parser = parser.parse_args(args)
 
-	from easydict import EasyDict
-	parser = EasyDict({'dataset': 'pascalvoc',
-						'coco_path': '../data/PascalVOC',
-						# 'dump_dir': '/home/qdinh/pytorch_retinanet_master/dump/pascalvoc/transductive/zsd',
-						# 'model_path': '/home/qdinh/pytorch_retinanet_master/checkpoints/pascalvoc/transductive/transductive_resnet50_0.pt',
-						# 'detect_type': 'zsd',
-						'dump_dir': '/home/qdinh/pytorch_retinanet_master/dump/pascalvoc/inductive/zsd',
-						'model_path': '/home/qdinh/pytorch_retinanet_master/checkpoints/pascalvoc/inductive/FL30/inductive_resnet50_29.pt',
-						'detect_type': 'zsd',
-						# 'dump_dir': '/home/qdinh/pytorch_retinanet_master/dump/pascalvoc/polar',
-						# 'model_path': '/home/qdinh/pytorch_retinanet_master/checkpoints/pascalvoc/polar/w2v/polar_resnet50_29.pt',
-						# 'detect_type': 'zsd',
-						# 'dump_dir': '/home/qdinh/pytorch_retinanet_master/dump/pascalvoc/traditional/zsd',
-						# 'model_path': '/home/qdinh/pytorch_retinanet_master/checkpoints/pascalvoc/traditional/traditional_resnet50_9.pt',
-						# 'detect_type': 'zsd',
-						# 'dump_dir': '/home/qdinh/pytorch_retinanet_master/dump/pascalvoc/vocab/zsd',
-						# 'model_path': '/home/qdinh/pytorch_retinanet_master/checkpoints/pascalvoc/polar/w2v/polar_resnet50_9.pt',
-						# 'detect_type': 'zsd',
-						'n_im': 200,
-						'th': 0.05})	
-	 
 	# from easydict import EasyDict
-	# parser = EasyDict({'dataset': 'coco',
-	# 					'coco_path': '../data/MSCOCO',
-	# 					'dump_dir': '/home/qdinh/pytorch_retinanet_master/dump/coco/traditional/zsd',
-	# 					'model_path': '/home/qdinh/pytorch_retinanet_master/checkpoints/coco/traditional/traditional_resnet50_5.pt',
+	# parser = EasyDict({'dataset': 'pascalvoc',
+	# 					'coco_path': '../data/PascalVOC',
+	# 					# 'dump_dir': '/home/qdinh/pytorch_retinanet_master/dump/pascalvoc/transductive/zsd',
+	# 					# 'model_path': '/home/qdinh/pytorch_retinanet_master/checkpoints/pascalvoc/transductive/transductive_resnet50_0.pt',
+	# 					# 'detect_type': 'zsd',
+	# 					'dump_dir': '/home/qdinh/pytorch_retinanet_master/dump/pascalvoc/inductive/zsd',
+	# 					'model_path': '/home/qdinh/pytorch_retinanet_master/checkpoints/pascalvoc/inductive/FL30/inductive_resnet50_29.pt',
 	# 					'detect_type': 'zsd',
-	# 					'n_im': 100,
-	# 					'th': 0.05})	 
+	# 					# 'dump_dir': '/home/qdinh/pytorch_retinanet_master/dump/pascalvoc/polar',
+	# 					# 'model_path': '/home/qdinh/pytorch_retinanet_master/checkpoints/pascalvoc/polar/w2v/polar_resnet50_29.pt',
+	# 					# 'detect_type': 'zsd',
+	# 					# 'dump_dir': '/home/qdinh/pytorch_retinanet_master/dump/pascalvoc/traditional/zsd',
+	# 					# 'model_path': '/home/qdinh/pytorch_retinanet_master/checkpoints/pascalvoc/traditional/traditional_resnet50_9.pt',
+	# 					# 'detect_type': 'zsd',
+	# 					# 'dump_dir': '/home/qdinh/pytorch_retinanet_master/dump/pascalvoc/vocab/zsd',
+	# 					# 'model_path': '/home/qdinh/pytorch_retinanet_master/checkpoints/pascalvoc/polar/w2v/polar_resnet50_9.pt',
+	# 					# 'detect_type': 'zsd',
+	# 					'n_im': 200,
+	# 					'th': 0.05})	
+	 
+	from easydict import EasyDict
+	parser = EasyDict({'dataset': 'coco',
+						'coco_path': '../data/MSCOCO',
+						'dump_dir': '/home/qdinh/pytorch_retinanet_master/dump/coco/traditional',
+						'model_path': '/home/qdinh/pytorch_retinanet_master/checkpoints/coco/traditional/traditional_resnet50_11.pt',
+						'detect_type': 'traditional',
+						'n_im': 100,
+						'th': 0.05})	 
 	
 	if os.path.exists(parser.dump_dir):
 		shutil.rmtree(parser.dump_dir)

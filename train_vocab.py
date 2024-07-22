@@ -14,7 +14,7 @@ import torch.optim as optim
 from torchvision import transforms
 from torch.utils.data import DataLoader
 
-from retinanet import model_polar
+from pytorch_retinanet_master.retinanet import model_vocab
 from retinanet.losses_polar import PolarLoss
 from retinanet.losses import FocalLoss
 from retinanet.dataloader import CocoDataset, collater, Resizer, AspectRatioBasedSampler, Augmenter, Normalizer
@@ -115,15 +115,15 @@ def main(args=None):
         s, u = 65, 15
     #### Create the model #### 
     if parser.depth == 18:
-        retinanet = model_polar.RetinaNet18(class_embeddings, vocab_embeddings, s+u, s, pretrained=True) 
+        retinanet = model_vocab.RetinaNet18(class_embeddings, vocab_embeddings, s+u, s, pretrained=True) 
     elif parser.depth == 34:
-        retinanet = model_polar.RetinaNet34(class_embeddings, vocab_embeddings, s+u, s, pretrained=True)
+        retinanet = model_vocab.RetinaNet34(class_embeddings, vocab_embeddings, s+u, s, pretrained=True)
     elif parser.depth == 50:
-        retinanet = model_polar.RetinaNet50(class_embeddings, vocab_embeddings, s+u, s, pretrained=True)
+        retinanet = model_vocab.RetinaNet50(class_embeddings, vocab_embeddings, s+u, s, pretrained=True)
     elif parser.depth == 101:
-        retinanet = model_polar.RetinaNet101(class_embeddings, vocab_embeddings, s+u, s, pretrained=True)
+        retinanet = model_vocab.RetinaNet101(class_embeddings, vocab_embeddings, s+u, s, pretrained=True)
     elif parser.depth == 152:
-        retinanet = model_polar.RetinaNet152(class_embeddings, vocab_embeddings, s+u, s, pretrained=True)
+        retinanet = model_vocab.RetinaNet152(class_embeddings, vocab_embeddings, s+u, s, pretrained=True)
     else:
         raise ValueError('Unsupported model depth, must be one of 18, 34, 50, 101, 152')
 

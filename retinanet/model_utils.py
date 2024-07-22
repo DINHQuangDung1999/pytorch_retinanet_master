@@ -1,6 +1,5 @@
-import torch
 import json
-from retinanet import model, model_inductive, model_transductive, model_polar
+from retinanet import model, model_inductive, model_transductive, model_vocab
 import numpy as np
 
 def get_words(dataset, type = 'w2v'):
