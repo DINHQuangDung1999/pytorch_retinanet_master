@@ -103,23 +103,23 @@ class CocoDataset(Dataset):
         annot = self.load_annotations(idx)
         sample = {'img': img, 'annot': annot}
 
-        if self.transform:
-            sample = self.transform(sample)
-        return sample
-
         # if self.transform:
-        #     image = torch.from_numpy(sample['img']).float().permute(2,0,1)
-        #     target = {'boxes': torch.from_numpy(sample['annot'][:,:4]).float(), 
-        #               'labels': torch.from_numpy(sample['annot'][:,4]).long()}
-        #     # breakpoint()
-        #     image, target = self.transform(image, target)
-        #     annots = torch.concat([target['boxes'], target['labels'].unsqueeze(1)], dim = 1)
-        #     if 'scale' in target:
-        #         return {'img': image, 'annot': annots, 'scale': target['scale']}
-        #     else:
-        #         return {'img': image, 'annot': annots}
-        # else:
-        #     return sample
+        #     sample = self.transform(sample)
+        # return sample
+
+        if self.transform:
+            image = torch.from_numpy(sample['img']).float().permute(2,0,1)
+            target = {'boxes': torch.from_numpy(sample['annot'][:,:4]).float(), 
+                      'labels': torch.from_numpy(sample['annot'][:,4]).long()}
+            # breakpoint()
+            image, target = self.transform(image, target)
+            annots = torch.concat([target['boxes'], target['labels'].unsqueeze(1)], dim = 1)
+            if 'scale' in target:
+                return {'img': image, 'annot': annots, 'scale': target['scale']}
+            else:
+                return {'img': image, 'annot': annots}
+        else:
+            return sample
 
     def load_image(self, image_index):
         image_info = self.coco.loadImgs(self.image_ids[image_index])[0]

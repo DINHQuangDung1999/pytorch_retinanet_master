@@ -326,6 +326,7 @@ class Resizer(object):
 
         target['boxes'] *= scale
         target['scale'] = scale
+        image = torch.from_numpy(image)
         return image, target
 
 
@@ -345,3 +346,35 @@ class Compose(object):
             format_string += "    {0}".format(t)
         format_string += "\n)"
         return format_string
+
+
+
+def get_transforms(training):
+
+    # The image of ImageNet is relatively small.
+    scales = [320, 336, 352, 368, 400, 416, 432, 448, 464, 480]
+
+    if training == True:
+
+        return Compose([
+                RandomHorizontalFlip(),
+                RandomSelect(
+                    RandomResize(scales, max_size=512),
+                    Compose(
+                        [
+                            RandomResize([320, 352, 400, 480, 512]), #500, 600
+                            RandomSizeCrop(320, 480), #384, 600
+                            RandomResize(scales, max_size=512), #642
+                        ]
+                    ),
+                ),
+                Normalize(),
+                Resizer()
+            ])
+
+    if training == False:
+        return Compose([
+            RandomResize([512], max_size=512), #480    642
+            Normalize(),
+            Resizer()
+        ])
